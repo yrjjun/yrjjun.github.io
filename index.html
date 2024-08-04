@@ -104,7 +104,7 @@
         <!-- 视频列表容器 -->
         <div class="video-list-container tw-card">
             <div class="video-list">
-                <a href="https://example.com/video1.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video1.mp4', 0)">视频标题1</a>
+                <a href="https://player.dogecloud.com/web/player.html?vcode=0dde63991a8b8c84&userId=8554&autoPlay=false&inFrame=true&vtype=9" class="video-item" onclick="playVideo(event, 'https://player.dogecloud.com/web/player.html?vcode=0dde63991a8b8c84&userId=8554&autoPlay=false&inFrame=true&vtype=9', 0)">视频标题1</a>
                 <a href="https://example.com/video2.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video2.mp4', 1)">视频标题2</a>
                 <a href="https://example.com/video3.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video3.mp4', 2)">视频标题3</a>
                 <a href="https://example.com/video4.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video4.mp4', 3)">视频标题4</a>
@@ -141,10 +141,13 @@
             event.preventDefault(); // 阻止默认的链接跳转行为
             const video = document.getElementById('mainVideo');
             const source = document.getElementById('videoSource');
+            video.pause(); // 在设置新源之前暂停视频
             source.src = videoSrc;
             currentVideoIndex = index;
             video.load();
-            video.play();
+            video.play().catch(error => {
+                console.error('播放失败:', error);
+            });
         }
 
         function handleVideoEnd() {
