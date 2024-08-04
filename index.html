@@ -1,1 +1,59 @@
-hi
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频播放器列表</title>
+    <!-- 引入Taro Work的CSS文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw@latest/dist/tw.min.css">
+    <style>
+        .video-player {
+            margin-bottom: 20px;
+        }
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .video-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .video-item h3 {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">视频播放器列表</h1>
+        <div class="video-list">
+            <!-- 视频项1 -->
+            <div class="video-item tw-card">
+                <h3>视频标题1</h3>
+                <video class="video-player" width="320" height="240" controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频。
+                </video>
+            </div>
+            <!-- 视频项2 -->
+            <div class="video-item tw-card">
+                <h3>视频标题2</h3>
+                <video class="video-player" width="320" height="240" controls>
+                    <source src="video2.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频。
+                </video>
+            </div>
+            <!-- 视频项3 -->
+            <div class="video-item tw-card">
+                <h3>视频标题3</h3>
+                <video class="video-player" width="320" height="240" controls>
+                    <source src="video3.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频。
+                </video>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
