@@ -17,8 +17,12 @@
         .video-player {
             flex: 2;
         }
-        .video-list {
+        .video-list-container {
             flex: 1;
+            max-height: 360px;
+            overflow-y: auto;
+        }
+        .video-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -44,11 +48,20 @@
                 您的浏览器不支持HTML5视频。
             </video>
         </div>
-        <!-- 视频列表 -->
-        <div class="video-list tw-card">
-            <div class="video-item" onclick="playVideo('video1.mp4')">视频标题1</div>
-            <div class="video-item" onclick="playVideo('video2.mp4')">视频标题2</div>
-            <div class="video-item" onclick="playVideo('video3.mp4')">视频标题3</div>
+        <!-- 视频列表容器 -->
+        <div class="video-list-container tw-card">
+            <div class="video-list">
+                <div class="video-item" onclick="playVideo('video1.mp4')">视频标题1</div>
+                <div class="video-item" onclick="playVideo('video2.mp4')">视频标题2</div>
+                <div class="video-item" onclick="playVideo('video3.mp4')">视频标题3</div>
+                <div class="video-item" onclick="playVideo('video4.mp4')">视频标题4</div>
+                <div class="video-item" onclick="playVideo('video5.mp4')">视频标题5</div>
+                <div class="video-item" onclick="playVideo('video6.mp4')">视频标题6</div>
+                <div class="video-item" onclick="playVideo('video7.mp4')">视频标题7</div>
+                <div class="video-item" onclick="playVideo('video8.mp4')">视频标题8</div>
+                <div class="video-item" onclick="playVideo('video9.mp4')">视频标题9</div>
+                <div class="video-item" onclick="playVideo('video10.mp4')">视频标题10</div>
+            </div>
         </div>
     </div>
 
