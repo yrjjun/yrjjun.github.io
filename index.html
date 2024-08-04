@@ -50,6 +50,8 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             transition: background-color 0.3s, border-color 0.3s;
+            text-decoration: none;
+            color: inherit;
         }
         .video-item:hover {
             background-color: #f0f0f0;
@@ -102,8 +104,72 @@
         <!-- 视频列表容器 -->
         <div class="video-list-container tw-card">
             <div class="video-list">
-                <div class="video-item" onclick="playVideo('video1.mp4', 0)">视频标题1</div>
-                <div class="video-item" onclick="playVideo('video2.mp4', 1)">视频标题2</div>
-                <div class="video-item" onclick="playVideo('video3.mp4', 2)">视频标题3</div>
-                <div class="video-item" onclick="playVideo('video4.mp4', 3)">视频标题4</div>
-         
+                <a href="video1.mp4" class="video-item" onclick="playVideo(event, 'video1.mp4', 0)">视频标题1</a>
+                <a href="video2.mp4" class="video-item" onclick="playVideo(event, 'video2.mp4', 1)">视频标题2</a>
+                <a href="video3.mp4" class="video-item" onclick="playVideo(event, 'video3.mp4', 2)">视频标题3</a>
+                <a href="video4.mp4" class="video-item" onclick="playVideo(event, 'video4.mp4', 3)">视频标题4</a>
+                <a href="video5.mp4" class="video-item" onclick="playVideo(event, 'video5.mp4', 4)">视频标题5</a>
+                <a href="video6.mp4" class="video-item" onclick="playVideo(event, 'video6.mp4', 5)">视频标题6</a>
+                <a href="video7.mp4" class="video-item" onclick="playVideo(event, 'video7.mp4', 6)">视频标题7</a>
+                <a href="video8.mp4" class="video-item" onclick="playVideo(event, 'video8.mp4', 7)">视频标题8</a>
+                <a href="video9.mp4" class="video-item" onclick="playVideo(event, 'video9.mp4', 8)">视频标题9</a>
+                <a href="video10.mp4" class="video-item" onclick="playVideo(event, 'video10.mp4', 9)">视频标题10</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const videos = [
+            'video1.mp4',
+            'video2.mp4',
+            'video3.mp4',
+            'video4.mp4',
+            'video5.mp4',
+            'video6.mp4',
+            'video7.mp4',
+            'video8.mp4',
+            'video9.mp4',
+            'video10.mp4'
+        ];
+
+        let currentVideoIndex = 0;
+        let playMode = 'loop';
+
+        document.getElementById('mainVideo').addEventListener('ended', handleVideoEnd);
+
+        function playVideo(event, videoSrc, index) {
+            event.preventDefault(); // 阻止默认的链接跳转行为
+            const video = document.getElementById('mainVideo');
+            const source = document.getElementById('videoSource');
+            source.src = videoSrc;
+            currentVideoIndex = index;
+            video.load();
+            video.play();
+        }
+
+        function handleVideoEnd() {
+            switch (playMode) {
+                case 'loop':
+                    this.play();
+                    break;
+                case 'playlist':
+                    currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+                    playVideo(new Event('ended'), videos[currentVideoIndex], currentVideoIndex);
+                    break;
+                case 'random':
+                    currentVideoIndex = Math.floor(Math.random() * videos.length);
+                    playVideo(new Event('ended'), videos[currentVideoIndex], currentVideoIndex);
+                    break;
+            }
+        }
+
+        function setPlayMode() {
+            playMode = document.getElementById('playMode').value;
+        }
+
+        function toggleNightMode() {
+            document.body.classList.toggle('night-mode');
+        }
+    </script>
+</body>
+</html>
