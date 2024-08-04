@@ -97,39 +97,39 @@
         <!-- 视频播放器 -->
         <div class="video-player tw-card">
             <video id="mainVideo" width="100%" height="auto" controls>
-                <source id="videoSource" src="https://example.com/video1.mp4" type="video/mp4">
+                <source id="videoSource" src="/videos/video1.mp4" type="video/mp4">
                 您的浏览器不支持HTML5视频。
             </video>
         </div>
         <!-- 视频列表容器 -->
         <div class="video-list-container tw-card">
             <div class="video-list">
-                <a href="https://player.dogecloud.com/web/player.html?vcode=0dde63991a8b8c84&userId=8554&autoPlay=false&inFrame=true&vtype=9" class="video-item" onclick="playVideo(event, 'https://player.dogecloud.com/web/player.html?vcode=0dde63991a8b8c84&userId=8554&autoPlay=false&inFrame=true&vtype=9', 0)">视频标题1</a>
-                <a href="https://example.com/video2.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video2.mp4', 1)">视频标题2</a>
-                <a href="https://example.com/video3.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video3.mp4', 2)">视频标题3</a>
-                <a href="https://example.com/video4.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video4.mp4', 3)">视频标题4</a>
-                <a href="https://example.com/video5.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video5.mp4', 4)">视频标题5</a>
-                <a href="https://example.com/video6.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video6.mp4', 5)">视频标题6</a>
-                <a href="https://example.com/video7.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video7.mp4', 6)">视频标题7</a>
-                <a href="https://example.com/video8.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video8.mp4', 7)">视频标题8</a>
-                <a href="https://example.com/video9.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video9.mp4', 8)">视频标题9</a>
-                <a href="https://example.com/video10.mp4" class="video-item" onclick="playVideo(event, 'https://example.com/video10.mp4', 9)">视频标题10</a>
+                <a href="/videos/video1.mp4" class="video-item" onclick="playVideo(event, '/videos/video1.mp4', 0)">视频标题1</a>
+                <a href="/videos/video2.mp4" class="video-item" onclick="playVideo(event, '/videos/video2.mp4', 1)">视频标题2</a>
+                <a href="/videos/video3.mp4" class="video-item" onclick="playVideo(event, '/videos/video3.mp4', 2)">视频标题3</a>
+                <a href="/videos/video4.mp4" class="video-item" onclick="playVideo(event, '/videos/video4.mp4', 3)">视频标题4</a>
+                <a href="/videos/video5.mp4" class="video-item" onclick="playVideo(event, '/videos/video5.mp4', 4)">视频标题5</a>
+                <a href="/videos/video6.mp4" class="video-item" onclick="playVideo(event, '/videos/video6.mp4', 5)">视频标题6</a>
+                <a href="/videos/video7.mp4" class="video-item" onclick="playVideo(event, '/videos/video7.mp4', 6)">视频标题7</a>
+                <a href="/videos/video8.mp4" class="video-item" onclick="playVideo(event, '/videos/video8.mp4', 7)">视频标题8</a>
+                <a href="/videos/video9.mp4" class="video-item" onclick="playVideo(event, '/videos/video9.mp4', 8)">视频标题9</a>
+                <a href="/videos/video10.mp4" class="video-item" onclick="playVideo(event, '/videos/video10.mp4', 9)">视频标题10</a>
             </div>
         </div>
     </div>
 
     <script>
         const videos = [
-            'https://example.com/video1.mp4',
-            'https://example.com/video2.mp4',
-            'https://example.com/video3.mp4',
-            'https://example.com/video4.mp4',
-            'https://example.com/video5.mp4',
-            'https://example.com/video6.mp4',
-            'https://example.com/video7.mp4',
-            'https://example.com/video8.mp4',
-            'https://example.com/video9.mp4',
-            'https://example.com/video10.mp4'
+            '/videos/video1.mp4',
+            '/videos/video2.mp4',
+            '/videos/video3.mp4',
+            '/videos/video4.mp4',
+            '/videos/video5.mp4',
+            '/videos/video6.mp4',
+            '/videos/video7.mp4',
+            '/videos/video8.mp4',
+            '/videos/video9.mp4',
+            '/videos/video10.mp4'
         ];
 
         let currentVideoIndex = 0;
