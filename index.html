@@ -12,17 +12,20 @@
         }
         .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             gap: 20px;
             padding: 20px;
         }
         .video-player {
-            flex: 2;
+            width: 100%;
+            max-width: 640px;
         }
         .video-list-container {
-            flex: 1;
-            max-height: 360px;
+            width: 100%;
+            max-width: 320px;
+            max-height: 300px;
             overflow-y: auto;
         }
         .video-list {
@@ -50,6 +53,15 @@
         .night-mode .video-item:hover {
             background-color: #555;
         }
+        @media(min-width: 768px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .video-list-container {
+                max-height: 360px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -57,7 +69,7 @@
     <div class="container">
         <!-- 视频播放器 -->
         <div class="video-player tw-card">
-            <video id="mainVideo" width="640" height="360" controls>
+            <video id="mainVideo" width="100%" height="auto" controls>
                 <source id="videoSource" src="video1.mp4" type="video/mp4">
                 您的浏览器不支持HTML5视频。
             </video>
