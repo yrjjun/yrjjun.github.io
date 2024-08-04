@@ -85,6 +85,11 @@
     <div class="header">
         <h1>视频播放器列表</h1>
         <button onclick="toggleNightMode()" class="tw-btn tw-btn-primary">切换夜间模式</button>
+        <select id="playMode" onchange="setPlayMode()" class="tw-select">
+            <option value="loop">单曲循环</option>
+            <option value="playlist">列表循环</option>
+            <option value="random">随机播放</option>
+        </select>
     </div>
     <div class="container">
         <!-- 视频播放器 -->
@@ -97,32 +102,8 @@
         <!-- 视频列表容器 -->
         <div class="video-list-container tw-card">
             <div class="video-list">
-                <div class="video-item" onclick="playVideo('video1.mp4')">视频标题1</div>
-                <div class="video-item" onclick="playVideo('video2.mp4')">视频标题2</div>
-                <div class="video-item" onclick="playVideo('video3.mp4')">视频标题3</div>
-                <div class="video-item" onclick="playVideo('video4.mp4')">视频标题4</div>
-                <div class="video-item" onclick="playVideo('video5.mp4')">视频标题5</div>
-                <div class="video-item" onclick="playVideo('video6.mp4')">视频标题6</div>
-                <div class="video-item" onclick="playVideo('video7.mp4')">视频标题7</div>
-                <div class="video-item" onclick="playVideo('video8.mp4')">视频标题8</div>
-                <div class="video-item" onclick="playVideo('video9.mp4')">视频标题9</div>
-                <div class="video-item" onclick="playVideo('video10.mp4')">视频标题10</div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function playVideo(videoSrc) {
-            var video = document.getElementById('mainVideo');
-            var source = document.getElementById('videoSource');
-            source.src = videoSrc;
-            video.load();
-            video.play();
-        }
-
-        function toggleNightMode() {
-            document.body.classList.toggle('night-mode');
-        }
-    </script>
-</body>
-</html>
+                <div class="video-item" onclick="playVideo('video1.mp4', 0)">视频标题1</div>
+                <div class="video-item" onclick="playVideo('video2.mp4', 1)">视频标题2</div>
+                <div class="video-item" onclick="playVideo('video3.mp4', 2)">视频标题3</div>
+                <div class="video-item" onclick="playVideo('video4.mp4', 3)">视频标题4</div>
+         
