@@ -7,6 +7,9 @@
     <!-- 引入Taro Work的CSS文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw@latest/dist/tw.min.css">
     <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
         .container {
             display: flex;
             justify-content: center;
@@ -37,9 +40,20 @@
         .video-item:hover {
             background-color: #f0f0f0;
         }
+        .night-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        .night-mode .video-item {
+            border-color: #555;
+        }
+        .night-mode .video-item:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
+    <button onclick="toggleNightMode()" class="tw-btn tw-btn-primary">切换夜间模式</button>
     <div class="container">
         <!-- 视频播放器 -->
         <div class="video-player tw-card">
@@ -72,6 +86,10 @@
             source.src = videoSrc;
             video.load();
             video.play();
+        }
+
+        function toggleNightMode() {
+            document.body.classList.toggle('night-mode');
         }
     </script>
 </body>
