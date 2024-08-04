@@ -29,6 +29,16 @@
             width: 100%;
             max-width: 640px;
         }
+        .lyrics-container {
+            width: 100%;
+            max-width: 640px;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #fff;
+        }
         .video-list-container {
             width: 100%;
             max-width: 320px;
@@ -72,6 +82,10 @@
             background-color: #555;
             border-color: #666;
         }
+        .night-mode .lyrics-container {
+            background-color: #444;
+            border-color: #555;
+        }
         @media(min-width: 768px) {
             .container {
                 flex-direction: row;
@@ -79,6 +93,14 @@
             }
             .video-list-container {
                 max-height: 360px;
+            }
+            .lyrics-container {
+                order: 2;
+            }
+        }
+        @media(max-width: 767px) {
+            .lyrics-container {
+                order: -1;
             }
         }
     </style>
@@ -97,45 +119,52 @@
         <!-- 视频播放器 -->
         <div class="video-player tw-card">
             <video id="mainVideo" width="100%" height="auto" controls>
-                <source id="videoSource" src="/videos/video1.mp4" type="video/mp4">
+                <source id="videoSource" src="" type="video/mp4">
                 您的浏览器不支持HTML5视频。
             </video>
         </div>
+        <!-- 歌词展示框 -->
+        <div id="lyricsContainer" class="lyrics-container">
+            <p id="lyrics">请选择一个视频以查看歌词。</p>
+        </div>
         <!-- 视频列表容器 -->
         <div class="video-list-container tw-card">
-            <div class="video-list">
-                <a href="/videos/video1.mp4" class="video-item" onclick="playVideo(event, '/videos/video1.mp4', 0)">视频标题1</a>
-                <a href="/videos/video2.mp4" class="video-item" onclick="playVideo(event, '/videos/video2.mp4', 1)">视频标题2</a>
-                <a href="/videos/video3.mp4" class="video-item" onclick="playVideo(event, '/videos/video3.mp4', 2)">视频标题3</a>
-                <a href="/videos/video4.mp4" class="video-item" onclick="playVideo(event, '/videos/video4.mp4', 3)">视频标题4</a>
-                <a href="/videos/video5.mp4" class="video-item" onclick="playVideo(event, '/videos/video5.mp4', 4)">视频标题5</a>
-                <a href="/videos/video6.mp4" class="video-item" onclick="playVideo(event, '/videos/video6.mp4', 5)">视频标题6</a>
-                <a href="/videos/video7.mp4" class="video-item" onclick="playVideo(event, '/videos/video7.mp4', 6)">视频标题7</a>
-                <a href="/videos/video8.mp4" class="video-item" onclick="playVideo(event, '/videos/video8.mp4', 7)">视频标题8</a>
-                <a href="/videos/video9.mp4" class="video-item" onclick="playVideo(event, '/videos/video9.mp4', 8)">视频标题9</a>
-                <a href="/videos/video10.mp4" class="video-item" onclick="playVideo(event, '/videos/video10.mp4', 9)">视频标题10</a>
+            <div class="video-list" id="videoList">
+                <!-- 视频项将由JavaScript生成 -->
             </div>
         </div>
     </div>
 
     <script>
         const videos = [
-            '/videos/video1.mp4',
-            '/videos/video2.mp4',
-            '/videos/video3.mp4',
-            '/videos/video4.mp4',
-            '/videos/video5.mp4',
-            '/videos/video6.mp4',
-            '/videos/video7.mp4',
-            '/videos/video8.mp4',
-            '/videos/video9.mp4',
-            '/videos/video10.mp4'
+            { src: '/videos/video1.mp4', lyrics: '歌词1内容...', title: '视频标题1' },
+            { src: '/videos/video2.mp4', lyrics: '歌词2内容...', title: '视频标题2' },
+            { src: '/videos/video3.mp4', lyrics: '歌词3内容...', title: '视频标题3' },
+            { src: '/videos/video4.mp4', lyrics: '歌词4内容...', title: '视频标题4' },
+            { src: '/videos/video5.mp4', lyrics: '歌词5内容...', title: '视频标题5' },
+            { src: '/videos/video6.mp4', lyrics: '歌词6内容...', title: '视频标题6' },
+            { src: '/videos/video7.mp4', lyrics: '歌词7内容...', title: '视频标题7' },
+            { src: '/videos/video8.mp4', lyrics: '歌词8内容...', title: '视频标题8' },
+            { src: '/videos/video9.mp4', lyrics: '歌词9内容...', title: '视频标题9' },
+            { src: '/videos/video10.mp4', lyrics: '歌词10内容...', title: '视频标题10' }
         ];
 
         let currentVideoIndex = 0;
         let playMode = 'loop';
 
         document.getElementById('mainVideo').addEventListener('ended', handleVideoEnd);
+
+        window.onload = function() {
+            const videoList = document.getElementById('videoList');
+            videos.forEach((video, index) => {
+                const videoItem = document.createElement('a');
+                videoItem.href = video.src;
+                videoItem.textContent = video.title;
+                videoItem.className = 'video-item';
+                videoItem.onclick = (event) => playVideo(event, video.src, index);
+                videoList.appendChild(videoItem);
+            });
+        }
 
         function playVideo(event, videoSrc, index) {
             event.preventDefault(); // 阻止默认的链接跳转行为
@@ -144,6 +173,7 @@
             video.pause(); // 在设置新源之前暂停视频
             source.src = videoSrc;
             currentVideoIndex = index;
+            updateLyrics(index);
             video.load();
             video.play().catch(error => {
                 console.error('播放失败:', error);
@@ -157,11 +187,11 @@
                     break;
                 case 'playlist':
                     currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-                    playVideo(new Event('ended'), videos[currentVideoIndex], currentVideoIndex);
+                    playVideo(new Event('ended'), videos[currentVideoIndex].src, currentVideoIndex);
                     break;
                 case 'random':
                     currentVideoIndex = Math.floor(Math.random() * videos.length);
-                    playVideo(new Event('ended'), videos[currentVideoIndex], currentVideoIndex);
+                    playVideo(new Event('ended'), videos[currentVideoIndex].src, currentVideoIndex);
                     break;
             }
         }
@@ -172,6 +202,11 @@
 
         function toggleNightMode() {
             document.body.classList.toggle('night-mode');
+        }
+
+        function updateLyrics(index) {
+            const lyricsContainer = document.getElementById('lyrics');
+            lyricsContainer.textContent = videos[index].lyrics;
         }
     </script>
 </body>
