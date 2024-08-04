@@ -7,53 +7,59 @@
     <!-- 引入Taro Work的CSS文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw@latest/dist/tw.min.css">
     <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+        }
         .video-player {
-            margin-bottom: 20px;
+            flex: 2;
         }
         .video-list {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 10px;
         }
         .video-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        .video-item h3 {
-            margin: 10px 0;
+        .video-item:hover {
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">视频播放器列表</h1>
-        <div class="video-list">
-            <!-- 视频项1 -->
-            <div class="video-item tw-card">
-                <h3>视频标题1</h3>
-                <video class="video-player" width="320" height="240" controls>
-                    <source src="video1.mp4" type="video/mp4">
-                    您的浏览器不支持HTML5视频。
-                </video>
-            </div>
-            <!-- 视频项2 -->
-            <div class="video-item tw-card">
-                <h3>视频标题2</h3>
-                <video class="video-player" width="320" height="240" controls>
-                    <source src="video2.mp4" type="video/mp4">
-                    您的浏览器不支持HTML5视频。
-                </video>
-            </div>
-            <!-- 视频项3 -->
-            <div class="video-item tw-card">
-                <h3>视频标题3</h3>
-                <video class="video-player" width="320" height="240" controls>
-                    <source src="video3.mp4" type="video/mp4">
-                    您的浏览器不支持HTML5视频。
-                </video>
-            </div>
+        <!-- 视频播放器 -->
+        <div class="video-player tw-card">
+            <video id="mainVideo" width="640" height="360" controls>
+                <source id="videoSource" src="video1.mp4" type="video/mp4">
+                您的浏览器不支持HTML5视频。
+            </video>
+        </div>
+        <!-- 视频列表 -->
+        <div class="video-list tw-card">
+            <div class="video-item" onclick="playVideo('video1.mp4')">视频标题1</div>
+            <div class="video-item" onclick="playVideo('video2.mp4')">视频标题2</div>
+            <div class="video-item" onclick="playVideo('video3.mp4')">视频标题3</div>
         </div>
     </div>
+
+    <script>
+        function playVideo(videoSrc) {
+            var video = document.getElementById('mainVideo');
+            var source = document.getElementById('videoSource');
+            source.src = videoSrc;
+            video.load();
+            video.play();
+        }
+    </script>
 </body>
 </html>
